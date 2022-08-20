@@ -1,7 +1,15 @@
+using CRUD_MVC_DOTNET6.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<Context>
+    (options => options.UseMySql(
+        "server=localhost;initial catalog=CRUD_MVC_DOTNET6;uid=root;pwd=123456",
+        Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.30-mysql")));
 
 var app = builder.Build();
 
